@@ -105,8 +105,8 @@ function showPage(page) {
       <section class="contendorID">
         <h2 class="Subtitulo">¡ELIMINA TUS CHISTES!</h2>
         <p class="texto">Indica el ID del chiste que quieres eliminar.</p>
-        <input type="text" id="txtChiste">
-        <button>Eliminar</button>
+        <input type="text" id="txtChisteEliminar">
+        <button id="btChisteEliminar">Eliminar</button>
       </section>
     `;
   }
@@ -126,6 +126,7 @@ function efectoEncima(boton,colorOver) {
 }
 //Funciones para llamar a los endpoints
 
+//Funciones para el post
 async function crearChiste() {
   let tupla = [ 
     document.getElementById('txtChisteC').value, 
@@ -178,7 +179,7 @@ async function guardarChiste() {
   });
 }
 
-
+//Funciones para el put
 async function obtenerID() {
   const btTxt = document.getElementById("txtChisteA");
   const btUser = document.getElementById("nomUserA");
@@ -215,7 +216,6 @@ async function obtenerID() {
       alert("Modifique los campos que considere necesarios del chiste mostrado.");
     } catch (error) {
       alert("¡OCURRIÓ UN ERROR! El ID ingresado no existe. Por favor, ingreselo de nuevo.");
-      console.error('Error al obtener el chiste:', error);
     }
   });
 
@@ -272,6 +272,30 @@ async function actualizarChiste() {
   });
 }
 
+//Funciones para el delete 
+async function eliminarChiste() {
+ 
+  const btEliminar = document.getElementById("btChisteEliminar");
+
+  btEliminar.addEventListener("click", async () => {
+    efectoEncima(btEliminar, "#575454");
+    try {
+      const chisteID = document.getElementById("txtChisteEliminar");
+      const response = await fetch(`http://localhost:3005/eliminarChiste/${chisteID.value}`, {
+        method: "DELETE"
+      });
+
+      if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
+      }
+      alert("¡El chiste se eliminó exitosamente!");  
+      chisteID.value=" ";
+    } catch (error) {
+      alert("¡OCURRIÓ UN ERROR! No se econtró el chiste.");
+    }
+  });
+}
+
 
 
 const btCrearP= document.getElementById("botonCrearP");
@@ -296,6 +320,12 @@ document.addEventListener('DOMContentLoaded', function() {
     efectoEncima(btActualizarP,"#575454");
     showPage("Actualizar Chiste"); 
     actualizarChiste();
+  
+  });
+  btEliminarP.addEventListener("click", () => {
+    efectoEncima(btEliminarP,"#575454");
+    showPage("Eliminar Chiste"); 
+    eliminarChiste();
   
   });
 

@@ -55,11 +55,6 @@ app.post('/crearChiste', async(req,res)=>{
   }
 })
 
-
-
-
-
-
 app.get('/chiste/:id', async (req, res) => {
   try {
     const chisteEncontrado = await Chiste.findById(req.params.id)
@@ -85,6 +80,15 @@ app.put('/actualizarChiste/:id', async (req, res) => {
     res.status(400).send('Error al buscar el chiste.')
   }
 })
+
+app.delete('/eliminarChiste/:id', async (req, res) => {
+  try {
+    const chisteEliminar = await Chiste.deleteOne({ _id: req.params.id });
+    res.status(200).send('Se eliminó el chiste exitosamente.');
+  } catch (error) {
+    res.status(400).send('Error al eliminar el chiste.');
+  }
+});
 
 
 
