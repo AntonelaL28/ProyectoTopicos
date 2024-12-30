@@ -311,7 +311,6 @@ const btTodosP= document.getElementById("botonTodosP");
 document.addEventListener('DOMContentLoaded', function() {
   showPage("Crear Chiste");  
   efectoEncima(btCrearP,"#575454");
-  showPage("Crear Chiste"); 
   guardarChiste();
 
   btCrearP.addEventListener("click", () => {
