@@ -272,6 +272,7 @@ async function actualizarChiste() {
   });
 }
 
+
 //Funciones para el delete 
 async function eliminarChiste() {
  
@@ -309,7 +310,9 @@ const btTodosP= document.getElementById("botonTodosP");
 
 document.addEventListener('DOMContentLoaded', function() {
   showPage("Crear Chiste");  
-
+  efectoEncima(btCrearP,"#575454");
+  showPage("Crear Chiste"); 
+  guardarChiste();
 
   btCrearP.addEventListener("click", () => {
     efectoEncima(btCrearP,"#575454");
@@ -331,12 +334,3 @@ document.addEventListener('DOMContentLoaded', function() {
 
   
 });
-
-
-
-
-
-
-
-
-
