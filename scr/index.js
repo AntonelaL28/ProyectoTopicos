@@ -60,3 +60,34 @@ app.post('/crearChiste', async(req,res)=>{
 
 
 
+app.get('/chiste/:id', async (req, res) => {
+  try {
+    const chisteEncontrado = await Chiste.findById(req.params.id)
+    res.status(200).send(chisteEncontrado)
+  } catch (error) {
+    res.status(400).send('Error al buscar el chiste.')
+  }
+})
+
+app.put('/actualizarChiste/:id', async (req, res) => {
+  try {
+    var data = req.body 
+    const chisteEncontrado = await Chiste.findById(req.params.id)
+    
+    chisteEncontrado.TxtChiste = data.TxtChiste; 
+    chisteEncontrado.NomUser = data.NomUser; 
+    chisteEncontrado.Puntaje = data.Puntaje; 
+    chisteEncontrado.Categoria = data.Categoria; 
+    await chisteEncontrado.save();
+    
+    res.status(200).send(chisteEncontrado)
+  } catch (error) {
+    res.status(400).send('Error al buscar el chiste.')
+  }
+})
+
+
+
+
+
+
