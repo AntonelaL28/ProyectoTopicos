@@ -115,6 +115,7 @@ function showPage(page) {
       <section>
         <h2 class="Subtitulo">Obtener la Cantidad de Chistes por Categoría</h2>
         <main class="contendorFormulario">
+          <p class="texto">Indique la categoría para mostrar la cantidad de chistes.</p>
           <label class="texto" id="labelCantPunt">
             Categoría:
             <select id="categoriaCantidad">
@@ -136,7 +137,8 @@ function showPage(page) {
       <section>
         <h2 class="Subtitulo">Obtener Chistes por Puntaje</h2>
         <main class="contendorFormulario">
-          <label class="texto" id="labelCantPunt">
+          <p class="texto">Indique el puntaje para mostrar los chistes.</p>
+          <label class="texto">
             Puntaje:
             <input type="number" id="puntajeChistes" min="1" max="10" required>
           </label>
@@ -351,7 +353,9 @@ async function obtenerCantidadChistesPorCategoria() {
     const data = await response.json();
     //para mostrar el resultado:
     const contenedorResultado = document.getElementById('resultadoCantidadChistes');
-    contenedorResultado.innerHTML = `Hay ${data.cantidad} chiste(s) en la categoría ${data.categoria}`;
+    contenedorResultado.innerHTML = `
+      <h3 class="Subtitulo"> Hay ${data.cantidad} chiste(s) en la categoría ${data.categoria}</h3>
+    `;
   } catch (error) {
     alert(error.message || "Ocurrió un error al obtener la cantidad de chistes por categoría");
   }
@@ -380,11 +384,11 @@ async function obtenerChistesPorPuntaje() {
       chistes.forEach(chiste => {
         const div = document.createElement('div');
         div.innerHTML = `
-          <p>Texto del Chiste: ${chiste.TxtChiste}</p>
-          <p>Nombre del Usuario: ${chiste.NomUser}</p>
-          <p>Puntaje: ${chiste.Puntaje}</p>
-          <p>Categoría: ${chiste.Categoria}</p>
-          <p>ID: ${chiste.IDChiste}</p>
+          <p class="texto">Texto del Chiste: ${chiste.TxtChiste}</p>
+          <p class="texto">Nombre del Usuario: ${chiste.NomUser}</p>
+          <p class="texto">Puntaje: ${chiste.Puntaje}</p>
+          <p class="texto">Categoría: ${chiste.Categoria}</p>
+          <p class="texto">ID: ${chiste.IDChiste}</p>
           <br><br><br>
         `;
         contenedorResultado.appendChild(div);
