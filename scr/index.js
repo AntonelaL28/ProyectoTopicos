@@ -150,7 +150,11 @@ app.get('/obtenerChiste/:tipo', async (req, res) => {
         return res.status(200).json({ chiste: "Aún no hay chistes. ¡Crea uno!" });
       } else {
         const chisteAleatorio = chistesPropios[Math.floor(Math.random() * chistesPropios.length)];
-        return res.status(200).json({ chiste: chisteAleatorio.TxtChiste });
+        return res.status(200).json({ 
+          chiste: chisteAleatorio.TxtChiste, 
+          NomUser: chisteAleatorio.NomUser, 
+          _id: chisteAleatorio._id 
+        });
       }
     } else {
       return res.status(400).json({ error: 'Este tipo es inválido. Por favor seleccione uno válido.' });
@@ -160,3 +164,23 @@ app.get('/obtenerChiste/:tipo', async (req, res) => {
     return res.status(500).send('Error al obtener el chiste');
   }
 });
+
+
+app.get('/obtenerChisteID/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const chiste = await Chiste.findById(id);
+    if (!chiste) {
+      return res.status(404).json({ error: 'Chiste no encontrado.' });
+    }
+    return res.status(200).json(chiste);
+  } catch (error) {
+    if (error.name === 'CastError' && error.kind === 'ObjectId') {
+      return res.status(404).json({ error: 'Chiste no encontrado.' });
+    }
+    return res.status(500).send('Error al buscar el chiste.');
+  }
+});
+
+
