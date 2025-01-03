@@ -1,0 +1,23 @@
+{
+  "name": "proyectotopicos",
+  "version": "1.0.0",
+  "description": "Este es un proyecto para el curso de tópicos.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node scr/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AntonelaL28/ProyectoTopicos/commits?author=AntonelaL28"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.9.2"
+  }
+}
