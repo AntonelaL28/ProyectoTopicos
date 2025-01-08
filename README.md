@@ -18,7 +18,7 @@ MONGO_HOSTNAME=mongo
 Abrir la terminal e ingresar lo siguiente:
 docker-compose -f docker-compose.local.yml up --build
 
-## Paso 3:
+### Paso 3:
 Abrir el proyecto en el navegador con:
 http://localhost:3005/
 
