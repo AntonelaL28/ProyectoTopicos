@@ -1,3 +1,8 @@
+## Grupo 2 - sección 16343
+Daniela Castaldo (DaniCastaldo), 30906448
+Antonela Lauria (AntonelaL28), 30969781 
+Mariadelia Finizola (marid29), 30693341
+
 ## Para Correr el Proyecto
 
 ### Paso 1:
@@ -10,12 +15,29 @@ MONGO_HOSTNAME=mongo
 (se debe agregar manualmente, ya que a la hora de descargarlo del github no aparece)
 
 ### Paso 2:
-Para correrlo en el terminal:
+Abrir la terminal e ingresar lo siguiente:
 docker-compose -f docker-compose.local.yml up --build
 
+## Paso 3:
+Abrir el proyecto en el navegador con:
+http://localhost:3005/
+
+NOTA:
+Si al abrir el proyecto en el navegador no funciona nada,
+ingresar estas instrucciones adicionales en la terminal:
+
+primero esta:
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned -Force
+luego esta:
+http-server -p 3005
+
+Y deberá ingresar en este URL para visualizar la página de chistes:
+http://localhost:3005/index.html
 
 
-## URL para la Documentación de la API
+
+## URL para la Documentación de Swagger
+Para visualizar la página de Swagger ingrese en:
 http://localhost:3005/api-docs
 
 
