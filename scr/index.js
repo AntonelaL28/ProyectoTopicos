@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import dotenv from "dotenv";
 import mongoose from 'mongoose';
 import {Chiste} from './chistes.js';
@@ -15,10 +16,23 @@ import { Chiste } from './chistes.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import axios from 'axios';
+=======
+import dotenv from 'dotenv';
+import mongoose from 'mongoose';
+import { Chiste } from './chistes.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import axios from 'axios';
+>>>>>>> Stashed changes
 import swaggerUi from 'swagger-ui-express';
 import swaggerDocs from './swagger-config.js';
 import swaggerJSDoc from 'swagger-jsdoc';
 import options from './swagger-config.js';
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
 
 
 >>>>>>> Stashed changes
@@ -34,7 +48,11 @@ const port= 3005
 app.use(cors({origin:'*'}))
 app.use(express.json({limit: '50mb'}))
 app.use(express.urlencoded({extended:false}))
+<<<<<<< Updated upstream
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+>>>>>>> Stashed changes
+=======
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));//http://localhost:3005/api-docs
 >>>>>>> Stashed changes
 
 // Middleware
@@ -52,11 +70,14 @@ const staticPath = path.join(__dirname, 'public');
 app.use(express.static(staticPath));
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 // Conexión a la base de datos
 const connectDB = () => {
   const {
     MONGO_USERNAME, // Variables de entorno para la desestructuración de objetos
 =======
+=======
+>>>>>>> Stashed changes
 const specs = swaggerJSDoc(options)
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs))
 
@@ -166,8 +187,57 @@ app.get('/', (req, res) => {
 });
 
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 //aqui van los endpoints que tenemos que hacer 
 
+/**
+ * @swagger
+ * tags:
+ *    name: Chistes
+ *    description: API endpoint para gestionar chistes
+ */
+
+/**
+ * @swagger
+ * /crearChiste:
+ *   post:
+ *     summary: Crea un nuevo chiste
+ *     tags: [Chistes]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: array
+ *             items:
+ *               oneOf:
+ *                 - type: string
+ *                   description: Texto del chiste
+ *                   example: "¿Por qué las focas miran siempre hacia arriba? ¡Porque ahí están los focos!"
+ *                 - type: string
+ *                   description: Nombre del usuario
+ *                   example: "Juan Pérez"
+ *                 - type: integer
+ *                   description: Puntaje del chiste
+ *                   minimum: 1
+ *                   maximum: 10
+ *                   example: 5
+ *                 - type: string
+ *                   description: Categoría del chiste
+ *                   enum: ['Dad joke', 'Humor Negro', 'Chistoso', 'Malo']
+ *                   example: "Humor Negro"
+ *                 - type: string
+ *                   description: ID del chiste
+ *                   example: " "
+ *     responses:
+ *       200:
+ *         description: Chiste creado.
+ *       400:
+ *         description: Error al crear el chiste.
+ */
 app.post('/crearChiste', async(req,res)=>{
   try{
     var data = req.body 
@@ -188,6 +258,55 @@ app.post('/crearChiste', async(req,res)=>{
   }
 })
 
+/**
+ * @swagger
+ * /actualizarChiste/{id}:
+ *   put:
+ *     summary: Actualizar un chiste por su ID
+ *     tags: [Chistes]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: El ID del chiste a actualizar
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               TxtChiste:
+ *                 type: string
+ *                 description: Texto del chiste
+ *                 example: "¿Por qué las focas miran siempre hacia arriba? ¡Porque ahí están los focos!"
+ *               NomUser:
+ *                 type: string
+ *                 description: Nombre del usuario
+ *                 example: "Juan Pérez"
+ *               Puntaje:
+ *                 type: integer
+ *                 description: Puntaje del chiste
+ *                 minimum: 1
+ *                 maximum: 10
+ *                 example: 5
+ *               Categoria:
+ *                 type: string
+ *                 description: Categoría del chiste
+ *                 enum: ['Dad joke', 'Humor Negro', 'Chistoso', 'Malo']
+ *                 example: "Humor Negro"
+ *               IDChiste:
+ *                 type: string
+ *                 description: ID del chiste
+ *                 example: "12345"
+ *     responses:
+ *       200:
+ *         description: El chiste se actualizó correctamente.   
+ *       400:
+ *         description: Error al actualizar el chiste.
+ */
 app.get('/chiste/:id', async (req, res) => {
   try {
     const chisteEncontrado = await Chiste.findById(req.params.id)
@@ -315,6 +434,7 @@ app.put('/actualizarChiste/:id', async (req, res) => {
  *         description: El chiste se eliminó exitosamente
  *       400:
  *         description: Error al eliminar el chiste
+<<<<<<< Updated upstream
  *         content:
  *           application/json:
  *             schema:
@@ -326,6 +446,10 @@ app.put('/actualizarChiste/:id', async (req, res) => {
  */
 
 
+=======
+ */
+
+>>>>>>> Stashed changes
 app.delete('/eliminarChiste/:id', async (req, res) => {
   try {
     const chisteEliminar = await Chiste.deleteOne({ _id: req.params.id });
@@ -348,6 +472,7 @@ app.delete('/eliminarChiste/:id', async (req, res) => {
  *         description: La categoría de los chistes
  *         schema:
  *           type: string
+<<<<<<< Updated upstream
  *     responses:
  *       200:
  *         description: La cantidad de chistes en la categoría especificada
@@ -382,6 +507,14 @@ app.delete('/eliminarChiste/:id', async (req, res) => {
  *                 error:
  *                   type: string
  *                   example: "Error al obtener la cantidad de chistes por categoría."
+=======
+ *           enum: ['Dad joke', 'Humor Negro', 'Chistoso', 'Malo']
+ *     responses:
+ *       200:
+ *         description: La cantidad de chistes en la categoría especificada.
+ *       400:
+ *         description: Error al obtener la cantidad de chistes por categoría.
+>>>>>>> Stashed changes
  */
 
 app.get('/cantidadChistes/:categoria', async (req, res) => {
@@ -410,6 +543,7 @@ app.get('/cantidadChistes/:categoria', async (req, res) => {
  *         description: El puntaje por el cual se desean obtener los chistes
  *         schema:
  *           type: integer
+<<<<<<< Updated upstream
  *     responses:
  *       200:
  *         description: Chistes encontrados con el puntaje especificado
@@ -455,6 +589,14 @@ app.get('/cantidadChistes/:categoria', async (req, res) => {
  *                 error:
  *                   type: string
  *                   example: "Error al obtener los chistes por puntaje."
+=======
+ *           enum: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+ *     responses:
+ *       200:
+ *         description: Chistes encontrados con el puntaje especificado.
+ *       400:
+ *         description: Error al obtener los chistes por puntaje.
+>>>>>>> Stashed changes
  */
 
 app.get('/chistesPuntaje/:puntaje', async (req, res) => {
@@ -486,6 +628,7 @@ app.get('/chistesPuntaje/:puntaje', async (req, res) => {
  *           enum: [Chuck, Dad, Propio]
  *     responses:
  *       200:
+<<<<<<< Updated upstream
  *         description: Chiste obtenido con éxito
  *         content:
  *           application/json:
@@ -521,6 +664,13 @@ app.get('/chistesPuntaje/:puntaje', async (req, res) => {
  *                 error:
  *                   type: string
  *                   example: "Error al obtener el chiste"
+=======
+ *         description: Chiste obtenido con éxito.
+ *       400:
+ *         description: Error si el tipo es inválido.
+ *       500:
+ *         description: Error al obtener el chiste.
+>>>>>>> Stashed changes
  */
 
 app.get('/obtenerChiste/:tipo', async (req, res) => {
@@ -556,8 +706,11 @@ app.get('/obtenerChiste/:tipo', async (req, res) => {
 });
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 
+=======
+>>>>>>> Stashed changes
 /**
  * @swagger
  * /obtenerChisteID/{id}:
@@ -573,6 +726,7 @@ app.get('/obtenerChiste/:tipo', async (req, res) => {
  *           type: string
  *     responses:
  *       200:
+<<<<<<< Updated upstream
  *         description: Chiste encontrado con éxito
  *         content:
  *           application/json:
@@ -614,6 +768,15 @@ app.get('/obtenerChiste/:tipo', async (req, res) => {
  *                 error:
  *                   type: string
  *                   example: "Error al buscar el chiste."
+ */
+
+>>>>>>> Stashed changes
+=======
+ *         description: Chiste encontrado con éxito.
+ *       404:
+ *         description: Chiste no encontrado o ID inválido.
+ *       500:
+ *         description: Error al buscar el chiste.
  */
 
 >>>>>>> Stashed changes

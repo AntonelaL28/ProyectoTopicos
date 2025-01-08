@@ -164,7 +164,10 @@ input,select{
   font-size: 18px;
 }
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 @media (max-width: 800px) { 
   button{
     font-size: 0.8rem;

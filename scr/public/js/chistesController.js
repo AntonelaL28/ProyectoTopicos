@@ -1,4 +1,7 @@
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 function showPage(page) {
   const content = document.getElementById('contenedor');
   content.innerHTML = '';
@@ -224,7 +227,6 @@ async function crearChiste() {
     console.error(error.message);
   }
 }
-
 async function guardarChiste() {
   const btTxt = document.getElementById("txtChisteC");
   const btUser = document.getElementById("nomUserC");
@@ -343,7 +345,6 @@ async function actualizarChiste() {
   });
 }
 
-
 //Funciones para el delete 
 async function eliminarChiste() {
  
@@ -398,7 +399,12 @@ async function obtenerCantidadChistesPorCategoria() {
   }
 }
 
+<<<<<<< Updated upstream
 //función para obtener todos los chistes por puntaje
+=======
+
+//Funcion para obtener chiste ingresando el ID
+>>>>>>> Stashed changes
 async function obtenerChistesPorPuntaje() {
   const puntaje = document.getElementById('puntajeChistes').value;
   const btPuntaje = document.getElementById('botonPuntaje');
@@ -467,11 +473,15 @@ async function obtenerChiste() {
 
     const contenedorResultado = document.getElementById('resultadoChiste');
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
     let chisteHtml = `<p class="texto">Chiste: ${chisteN.chiste}</p>`;
     
     if (tipoChiste === 'Propio' && chisteN.NomUser && chisteN._id) {
       chisteHtml += `
         <br><p class="texto">Nombre: ${chisteN.NomUser}</p><br>
+<<<<<<< Updated upstream
         <br><p class="texto">ID: ${chisteN._id}</p><br>
 =======
     let chisteHtml = `<p>Chiste: ${chisteN.chiste}</p>`;
@@ -480,6 +490,9 @@ async function obtenerChiste() {
       chisteHtml += `
         <br><p>Nombre: ${chisteN.NomUser}</p><br>
         <br><p>ID: ${chisteN._id}</p><br>
+>>>>>>> Stashed changes
+=======
+        <br><p class="texto"> ID: ${chisteN._id}</p><br>
 >>>>>>> Stashed changes
       `;
     }
@@ -515,12 +528,16 @@ async function obtenerChistePorId() {
     const contenedorResultado = document.getElementById('resultadoChisteId');
     contenedorResultado.innerHTML = `
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
       <p class="texto">Chiste: ${chisteN.TxtChiste}</p>
       <p class="texto">Nombre: ${chisteN.NomUser}</p>
       <p class="texto">Puntaje: ${chisteN.Puntaje}</p>
       <p class="texto">Categoría: ${chisteN.Categoria}</p>
       <p class="texto">ID: ${chisteN._id}</p>
     `;
+<<<<<<< Updated upstream
     document.getElementById('idChiste').value=" ";
 =======
       <p>Chiste: ${chisteN.TxtChiste}</p>
@@ -529,6 +546,8 @@ async function obtenerChistePorId() {
       <p>Categoría: ${chisteN.Categoria}</p>
       <p>ID: ${chisteN._id}</p>
     `;
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   } catch (error) {
     alert(error.message || "Ocurrió un error al obtener el chiste por ID");
@@ -594,6 +613,9 @@ document.addEventListener('DOMContentLoaded', function() {
     showPage("Obtener Chiste"); 
 =======
     showPage("Obtener chiste"); 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   });
   btObtenerChisteID.addEventListener("click", ()=> {
