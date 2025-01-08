@@ -466,12 +466,21 @@ async function obtenerChiste() {
     console.log(chisteN); 
 
     const contenedorResultado = document.getElementById('resultadoChiste');
+<<<<<<< Updated upstream
     let chisteHtml = `<p class="texto">Chiste: ${chisteN.chiste}</p>`;
     
     if (tipoChiste === 'Propio' && chisteN.NomUser && chisteN._id) {
       chisteHtml += `
         <br><p class="texto">Nombre: ${chisteN.NomUser}</p><br>
         <br><p class="texto">ID: ${chisteN._id}</p><br>
+=======
+    let chisteHtml = `<p>Chiste: ${chisteN.chiste}</p>`;
+    
+    if (tipoChiste === 'Propio' && chisteN.NomUser && chisteN._id) {
+      chisteHtml += `
+        <br><p>Nombre: ${chisteN.NomUser}</p><br>
+        <br><p>ID: ${chisteN._id}</p><br>
+>>>>>>> Stashed changes
       `;
     }
 
@@ -505,6 +514,7 @@ async function obtenerChistePorId() {
     
     const contenedorResultado = document.getElementById('resultadoChisteId');
     contenedorResultado.innerHTML = `
+<<<<<<< Updated upstream
       <p class="texto">Chiste: ${chisteN.TxtChiste}</p>
       <p class="texto">Nombre: ${chisteN.NomUser}</p>
       <p class="texto">Puntaje: ${chisteN.Puntaje}</p>
@@ -512,6 +522,14 @@ async function obtenerChistePorId() {
       <p class="texto">ID: ${chisteN._id}</p>
     `;
     document.getElementById('idChiste').value=" ";
+=======
+      <p>Chiste: ${chisteN.TxtChiste}</p>
+      <p>Nombre: ${chisteN.NomUser}</p>
+      <p>Puntaje: ${chisteN.Puntaje}</p>
+      <p>Categoría: ${chisteN.Categoria}</p>
+      <p>ID: ${chisteN._id}</p>
+    `;
+>>>>>>> Stashed changes
   } catch (error) {
     alert(error.message || "Ocurrió un error al obtener el chiste por ID");
   }
@@ -572,7 +590,11 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   btObtenerChiste.addEventListener("click", ()=> {
     efectoEncima(btObtenerChiste,"#575454");
+<<<<<<< Updated upstream
     showPage("Obtener Chiste"); 
+=======
+    showPage("Obtener chiste"); 
+>>>>>>> Stashed changes
   });
   btObtenerChisteID.addEventListener("click", ()=> {
     efectoEncima(btObtenerChisteID,"#575454");
