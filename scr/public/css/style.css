@@ -35,8 +35,11 @@ html, body{
 }
 
 #ContenedorBotones{
-  padding-right: 5%;
-  padding-left: 5%;
+  column-gap: 5px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
 }
 
 button{
@@ -159,4 +162,24 @@ input,select{
   width: 100%;
   word-wrap: break-word; 
   font-size: 18px;
+}
+
+@media (max-width: 800px) { 
+  button{
+    font-size: 0.8rem;
+  }
+  #tituloP{
+    padding-right: 20%;
+    padding-left: 20%;
+    font-size: 1.5rem;
+  }
+  .Subtitulo{
+    padding-top: 7%;
+    padding-right: 20%;
+    padding-left: 20%;
+    font-size: 1.1rem;
+  }
+  .texto{ 
+    font-size: 1rem; 
+  }
 }

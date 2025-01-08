@@ -1,7 +1,3 @@
-
-
-
-
 function showPage(page) {
   const content = document.getElementById('contenedor');
   content.innerHTML = '';
@@ -168,7 +164,24 @@ function showPage(page) {
       </section>
     `;
   }
+  if (page === "Obtener Chistes por ID") {
+    content.innerHTML = `
+      <section>
+        <h2 class="Subtitulo">¡OBTENER CHISTE POR ID!</h2>
+        <main class="contendorFormulario">
+          <label class="texto" id="labelChisteId">
+            ID del Chiste:
+            <input type="text" id="idChiste" required>
+          </label>
+          <button id="botonId">Obtener Chiste por ID</button>
+          <div id="resultadoChisteId"></div>
+        </main>
+      </section>
+    `;
+  }
+  
 }
+window.showPage = showPage;
 
 function efectoEncima(boton,colorOver) {
   boton.addEventListener("mouseover", () => {
@@ -182,6 +195,8 @@ function efectoEncima(boton,colorOver) {
 
   });
 }
+window.efectoEncima = efectoEncima;
+
 //Funciones para llamar a los endpoints
 
 //Funciones para el post
@@ -236,6 +251,7 @@ async function guardarChiste() {
     }
   });
 }
+window.guardarChiste = guardarChiste;
 
 //Funciones para el put
 async function obtenerID() {
@@ -284,6 +300,7 @@ async function obtenerID() {
 
   return chisteActualizar;
 }
+window.obtenerID = obtenerID;
 
 async function actualizarChiste() {
   const btTxt = document.getElementById("txtChisteA");
@@ -329,7 +346,7 @@ async function actualizarChiste() {
     }
   });
 }
-
+window.actualizarChiste = actualizarChiste;
 
 //Funciones para el delete 
 async function eliminarChiste() {
@@ -354,6 +371,7 @@ async function eliminarChiste() {
     }
   });
 }
+window.eliminarChiste = eliminarChiste;
 
 //función para obtener la cantidad de chistes por categoría
 async function obtenerCantidadChistesPorCategoria() {
@@ -384,9 +402,10 @@ async function obtenerCantidadChistesPorCategoria() {
     alert(error.message || "Ocurrió un error al obtener la cantidad de chistes por categoría");
   }
 }
+window.obtenerCantidadChistesPorCategoria = obtenerCantidadChistesPorCategoria;
 
 
-
+//Funcion para obtener chiste ingresando el ID
 async function obtenerChistesPorPuntaje() {
   const puntaje = document.getElementById('puntajeChistes').value;
   const btPuntaje = document.getElementById('botonPuntaje');
@@ -429,6 +448,7 @@ async function obtenerChistesPorPuntaje() {
     alert(error.message || "Ocurrió un error al obtener los chistes por puntaje");
   }
 }
+window.obtenerChistesPorPuntaje = obtenerChistesPorPuntaje;
 
 //Funcion para obtener chiste segun categoria seleccionada
 async function obtenerChiste() {
@@ -449,17 +469,65 @@ async function obtenerChiste() {
       }
       throw new Error(`Response status: ${response.status}`);
     }
-    const data = await response.json();
-    // Para mostrar el resultado:
+    const chisteN = await response.json();
+    console.log(chisteN); 
+
     const contenedorResultado = document.getElementById('resultadoChiste');
-    contenedorResultado.innerHTML = `
-      <p>Chiste: ${data.chiste}</p> 
-      <br><br><br>
-    `;
+    let chisteHtml = `<p class="texto">Chiste: ${chisteN.chiste}</p>`;
+    
+    if (tipoChiste === 'Propio' && chisteN.NomUser && chisteN._id) {
+      chisteHtml += `
+        <br><p class="texto">Nombre: ${chisteN.NomUser}</p><br>
+        <br><p class="texto"> ID: ${chisteN._id}</p><br>
+      `;
+    }
+
+    contenedorResultado.innerHTML = chisteHtml;
   } catch (error) {
     alert(error.message || "Ocurrió un error al obtener el chiste por categoría");
   }
 }
+window.obtenerChiste = obtenerChiste;
+
+//Funcion para obtener chiste ingresando el ID
+async function obtenerChistePorId() {
+  const chisteId = document.getElementById('idChiste').value;
+
+  if (chisteId === "") {
+    alert("Por favor, ingrese un ID de chiste.");
+    return;
+  }
+
+  let url = `http://localhost:3005/obtenerChisteID/${chisteId}`;
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      if (response.status === 404) {
+        alert('No se ha encontrado un chiste con este ID, verifica el ID e intenta de nuevo.'); 
+        return;
+      }
+      throw new Error(`Response status: ${response.status}`);
+    }
+    const chisteN = await response.json();
+    
+    const contenedorResultado = document.getElementById('resultadoChisteId');
+    contenedorResultado.innerHTML = `
+      <p class="texto">Chiste: ${chisteN.TxtChiste}</p>
+      <p class="texto">Nombre: ${chisteN.NomUser}</p>
+      <p class="texto">Puntaje: ${chisteN.Puntaje}</p>
+      <p class="texto">Categoría: ${chisteN.Categoria}</p>
+      <p class="texto">ID: ${chisteN._id}</p>
+    `;
+  } catch (error) {
+    alert(error.message || "Ocurrió un error al obtener el chiste por ID");
+  }
+}
+window.obtenerChistePorId = obtenerChistePorId;
+
+
+
+
 
 
 
@@ -470,6 +538,7 @@ const btIDP= document.getElementById("botonIDP");
 const btCantidadP= document.getElementById("botonCantidadP");
 const btTodosP= document.getElementById("botonTodosP");
 const btObtenerChiste= document.getElementById("botonObtenerChiste");
+const btObtenerChisteID= document.getElementById("botonObtenerChisteID");
 
 
 
@@ -482,6 +551,7 @@ document.addEventListener('DOMContentLoaded', function() {
   efectoEncima(btCantidadP,"#575454");
   efectoEncima(btTodosP,"#575454");
   efectoEncima(btObtenerChiste, "#575454");
+  efectoEncima(btObtenerChisteID, "#575454");
 
   btCrearP.addEventListener("click", () => {
     efectoEncima(btCrearP,"#575454");
@@ -511,5 +581,15 @@ document.addEventListener('DOMContentLoaded', function() {
   btObtenerChiste.addEventListener("click", ()=> {
     efectoEncima(btObtenerChiste,"#575454");
     showPage("Obtener chiste"); 
-  })
+  });
+  btObtenerChisteID.addEventListener("click", ()=> {
+    efectoEncima(btObtenerChisteID,"#575454");
+    showPage("Obtener Chistes por ID"); 
+    document.getElementById("botonId").addEventListener("click", obtenerChistePorId);
+  })  
 });
+
+
+
+//exportar todas las funciones para utilizarlas en las pruebas
+export { crearChiste, obtenerID, guardarChiste, actualizarChiste, eliminarChiste, obtenerCantidadChistesPorCategoria, obtenerChistesPorPuntaje, obtenerChiste, obtenerChistePorId };
