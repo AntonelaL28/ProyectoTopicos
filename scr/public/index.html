@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self'">
+    <link rel="stylesheet" href="C:\Users\Rentek\OneDrive\Escritorio\ProyectoTopicos\scr\public\css\style.css">
+    <link rel="icon" href="C:\Users\Rentek\OneDrive\Escritorio\ProyectoTopicos\scr\public\Imagenes\carita.jpg" type="image/png" size="16x16 32x32 64x64"/>-->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="Imagenes/carita.jpg" type="image/png" size="16x16 32x32 64x64"/>
+    <title>Chistes</title>
+</head>
+<body>
+  
+    <header id="contendorHeader">
+      <h1 id="tituloP">PÁGINA DE CHISTES</h1>
+      <nav id="ContenedorBotones"> 
+        <button id="botonCrearP"onclick="showPage('Crear Chiste')">Crear Chiste</button>
+        <button id="botonObtenerChiste"onclick="showPage('Obtener Chiste')">Obtener Chiste</button>
+        <button id="botonActualizarP" onclick="showPage('Actualizar Chiste')">Actualizar Chiste</button>
+        <button id="botonEliminarP" onclick="showPage('Eliminar Chiste')">Eliminar Chiste</button>
+        <button id="botonCantidadP" onclick="showPage('Cantidad de Chistes')">Cantidad de Chistes por Categoría</button>
+        <button id="botonTodosP" onclick="showPage('Obtener Chistes por Puntaje')">Obtener Chistes por Puntaje</button>
+        <button id="botonObtenerChisteID" onclick="showPage('Obtener Chistes por ID')">Obtener Chistes por ID</button>
+      </nav>
+    </header> 
+    <main id="contenedor"> 
+    </main>
+    <!-- <script src="C:\Users\Rentek\OneDrive\Escritorio\ProyectoTopicos\scr\public\js\chistesController.js"></script> -->
+    <!--<script src="js/chistesController.js"></script>-->
+    <script type="module" src="js/chistesController.js"></script>
+</body>
+</html>

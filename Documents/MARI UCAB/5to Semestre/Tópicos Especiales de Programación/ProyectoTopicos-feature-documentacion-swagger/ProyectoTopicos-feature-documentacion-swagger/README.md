@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-aquí va una descripción clara 
-=======
 ## Grupo 2 - sección 16343
 Daniela Castaldo (DaniCastaldo), 30906448
 Antonela Lauria (AntonelaL28), 30969781 
@@ -83,4 +80,3 @@ Crear un archivo ".babelrc" y agregar:
 {
   "presets": ["@babel/preset-env"]
 }
->>>>>>> feature/documentacion-swagger
